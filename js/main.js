@@ -4,7 +4,7 @@ var listUser = document.getElementById('list-user');
 var formId = document.getElementById('formId');
 var app = document.getElementById('app');
 var formIdImg = document.getElementById('formIdImg');
-
+var listImg = document.getElementById('listImg');
 
 //Clases
 class UI {
@@ -46,12 +46,32 @@ class UI {
 
 
     GuardarImg(){
-      var id = sessionStorage.getItem('id');
-      var url = sessionStorage.getItem('url');
-      var width = sessionStorage.getItem('width');
-      var height = sessionStorage.getItem('height');
-      alert('sorry apenas iba por el endpoint' + 'La informacion de la imagen la muestra en consola')
-      console.log('id :' + id, 'url :' + url ,'width :' + width ,'height :' + height);
+        var id = sessionStorage.getItem('id');
+        var url = sessionStorage.getItem('url');
+        var width = sessionStorage.getItem('width');
+        var height = sessionStorage.getItem('height');
+
+        const element = document.createElement('div');
+
+        element.innerHTML = `
+                    <div name="contarDiv" class="card text-center mt-4">
+                        <div class="card-body">
+
+                        <img src="${url}" class="sizeImgList" alt="">
+
+                        <div class="form-group mt-4">
+                            <a class="btn btn-danger btn-block" name="eliminar">eliminar</a>
+                        </div>
+
+                        </div>
+                    </div>
+                `;
+        listImg.appendChild(element);        
+    }
+
+    EliminarImg(e){
+        e.parentElement.parentElement.remove();
+        alert('no me dio el tiempo para hacerlo con una api y base de datos');
     }
 
 }
@@ -61,6 +81,7 @@ evenListerner();
 function evenListerner(){
     formId.addEventListener('submit',cargarImg);
     listUser.addEventListener('click',GuardarImg);
+    listImg.addEventListener('click',EliminarImg);
 }
 
 function cargarImg(){
@@ -71,4 +92,9 @@ function cargarImg(){
 function GuardarImg(e){
     const ui = new UI();
     ui.GuardarImg(e.target);
+}
+
+function EliminarImg(e){
+    const ui = new UI();
+    ui.EliminarImg(e.target);
 }
