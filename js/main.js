@@ -9,10 +9,10 @@ var listImg = document.getElementById('listImg');
 //Clases
 class UI {
     
-    alert('no me dio el tiempo para hacerlo con una api y base de datos');
+    
 
     cargarImg(){
-
+        
         var contarDiv = document.getElementsByName('contarDiv');
         if(contarDiv.length >= 1) {
             contarDiv[0].remove();
